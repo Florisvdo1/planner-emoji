@@ -1,0 +1,241 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    overflow-x: hidden;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+#header-time-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#live-time {
+    font-size: 1.2em;
+}
+
+#time-button {
+    background-color: #ffffff;
+    color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 12px;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+#time-button:hover {
+    background-color: #e0e0e0;
+}
+
+/* Main content styling */
+main {
+    padding-top: 70px; /* Space for fixed header */
+    padding-bottom: 10px; /* Space for bottom content */
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 15px;
+}
+
+/* Timeslot styles */
+.timeslot {
+    background-color: #ffffff;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.timeslot-header {
+    font-size: 1em;
+    margin-bottom: 8px;
+}
+
+.emoji-placeholders {
+    display: flex;
+    gap: 8px;
+}
+
+.emoji-placeholder {
+    width: 50px;
+    height: 50px;
+    background-color: #f0f0f0;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    position: relative;
+}
+
+.emoji-placeholder.highlight {
+    background-color: #e0e0e0;
+    border-color: #4CAF50;
+}
+
+.note-placeholder {
+    margin-top: 8px;
+}
+
+.note-input {
+    width: 100%;
+    height: 50px;
+    padding: 8px;
+    font-size: 0.9em;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    resize: none;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.note-input:focus {
+    border-color: #4CAF50;
+}
+
+/* Emoji deck styles */
+#emoji-deck {
+    background-color: #fff;
+    padding: 10px 15px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+}
+
+.deck-header {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.deck-header h2 {
+    font-size: 1.2em;
+    color: #4CAF50;
+}
+
+.deck-tabs {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.tab-button {
+    flex: 1;
+    padding: 8px;
+    background-color: #f1f1f1;
+    border: none;
+    font-size: 0.9em;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s;
+}
+
+.tab-button:hover {
+    background-color: #e0e0e0;
+}
+
+.tab-button.active {
+    background-color: #fff;
+    border-bottom: 2px solid #4CAF50;
+}
+
+.deck-body {
+    padding: 0;
+}
+
+.emoji-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.emoji-item {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    user-select: none;
+}
+
+.emoji-item:active {
+    cursor: grabbing;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Draggable clone style */
+.dragging-clone {
+    position: absolute;
+    pointer-events: none;
+    z-index: 3000;
+    transform: translate(-50%, -50%);
+}
+
+/* Responsive Styles */
+@media (max-width: 480px) {
+    /* Adjustments for smaller screens */
+    header {
+        padding: 8px;
+    }
+    #live-time {
+        font-size: 1em;
+    }
+    #time-button {
+        padding: 5px 10px;
+        font-size: 0.8em;
+    }
+    .timeslot {
+        padding: 8px;
+    }
+    .timeslot-header {
+        font-size: 0.9em;
+    }
+    .emoji-placeholder {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3em;
+    }
+    .note-input {
+        height: 45px;
+        font-size: 0.8em;
+    }
+    .deck-header h2 {
+        font-size: 1em;
+    }
+    .tab-button {
+        padding: 6px;
+        font-size: 0.8em;
+    }
+    .emoji-item {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3em;
+    }
+}
