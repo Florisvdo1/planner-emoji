@@ -1,9 +1,19 @@
 // Data for emojis
 const emojiData = {
-    smileys: ['😀','😁','😂','🤣','😃','😄','😅','😆','😉','😊','😇','🙂','🙃','😌','😍','😘','😗','😙','😚','😋','😜'],
-    activities: ['⚽','🏀','🏈','⚾','🎾','🏐','🏉','🎱','🏓','🏸','🥅','🏒','🥊','🎳','🏹','🥋','🏆','🏅','🎽','🥌'],
-    food: ['🍏','🍎','🍐','🍊','🍋','🍌','🍉','🍇','🍓','🍈','🍒','🍑','🥭','🍍','🥥','🥝','🍅','🍆','🥑','🥦','🥒']
+    smileys: ['😀','😁','😂','🤣','😃','😄','😅','😆','😉','😊','😇','🙂','🙃','😌','😍','😘','😗','😙','😚','😋','😜','😝','🤑','🤗','🤔','🤐','🤨','😐','😑','😶','😏','😒','🙄','😬','🤥','😌','😔','😪','🤤','😴'],
+    animals: ['🐶','🐱','🐭','🐹','🐰','🦊','🐻','🐼','🐨','🐯','🦁','🐮','🐷','🐸','🐵','🙈','🙉','🙊','🐒','🐔','🐧','🐦','🐤','🐣','🐥','🦆','🦅','🦉','🦇','🐺','🐗','🐴','🦄','🐝','🐛','🦋','🐌','🐚','🐞'],
+    nature: ['🌵','🎄','🌲','🌳','🌴','🌱','🌿','☘️','🍀','🎍','🎋','🍃','🍂','🍁','🍄','🌾','💐','🌷','🌹','🥀','🌺','🌸','🌼','🌻','🌞','🌝','🌛','🌜','🌚','🌕','🌖','🌗','🌘','🌑','🌒','🌓','🌔','🌙','🌎'],
+    food: ['🍏','🍎','🍐','🍊','🍋','🍌','🍉','🍇','🍓','🍈','🍒','🍑','🥭','🍍','🥥','🥝','🍅','🍆','🥑','🥦','🥒','🥬','🌶️','🌽','🥕','🥔','🍠','🥐','🍞','🥖','🥨','🥯','🧀','🥚','🍳','🧈','🥞','🧇'],
+    activities: ['⚽','🏀','🏈','⚾','🎾','🏐','🏉','🎱','🏓','🏸','🥅','🏒','🥊','🎳','🏹','🥋','🏆','🏅','🎽','🥌','⛸️','🥇','🥈','🥉','🏵️','🎗️','🎖️','🏵️','🎗️','🎫','🎟️','🎭','🎨','🎪','🎤','🎧','🎼','🎹','🥁'],
+    travel: ['🚗','🚕','🚙','🚌','🚎','🏎️','🚓','🚑','🚒','🚐','🚚','🚛','🚜','🏍️','🛵','🚲','🛴','🚏','🛣️','🛤️','🏁','🚧','⚓','⛵','🛶','🚤','🛳️','⛴️','🛥️','🚢','✈️','🛩️','🛫','🛬','💺','🚁','🚟','🚠','🚡'],
+    objects: ['⌚','📱','📲','💻','⌨️','🖥️','🖨️','🖱️','🖲️','🕹️','🗜️','💽','💾','💿','📀','📼','📷','📸','📹','🎥','📽️','🎞️','📞','☎️','📟','📠','📺','📻','🎙️','🎚️','🎛️','⏱️','⏲️','⏰','🕰️','⌛','⏳','📡'],
+    symbols: ['❤️','💔','💕','💞','💓','💗','💖','💘','💝','💟','☮️','✝️','☪️','🕉️','☸️','✡️','🔯','🕎','☯️','☦️','🛐','⛎','♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓','🆔','⚛️','🉑','☢️','☣️'],
+    flags: ['🏳️','🏴','🏁','🚩','🏳️‍🌈','🏳️‍⚧️','🇦🇫','🇦🇱','🇩🇿','🇦🇸','🇦🇩','🇦🇴','🇦🇮','🇦🇶','🇦🇬','🇦🇷','🇦🇲','🇦🇼','🇦🇺','🇦🇹','🇦🇿','🇧🇸','🇧🇭','🇧🇩','🇧🇧','🇧🇾','🇧🇪','🇧🇿','🇧🇯','🇧🇲','🇧🇹','🇧🇴','🇧🇦','🇧🇼','🇧🇷','🇧🇳','🇧🇬','🇧🇫','🇧🇮','🇰🇭','🇨🇲'],
+    // Add more categories as needed
 };
+
+let categories = Object.keys(emojiData);
+let currentCategoryIndex = 0;
 
 let draggedEmoji = null;
 let draggedEmojiClone = null;
@@ -68,7 +78,25 @@ function loadEmojis(category) {
 
         emojiGrid.appendChild(emojiItem);
     });
+
+    // Update the category name display
+    const categoryNameDisplay = document.getElementById('category-name');
+    categoryNameDisplay.textContent = category.charAt(0).toUpperCase() + category.slice(1);
 }
+
+// Handle navigation between categories
+function navigateCategory(direction) {
+    if (direction === 'prev') {
+        currentCategoryIndex = (currentCategoryIndex - 1 + categories.length) % categories.length;
+    } else if (direction === 'next') {
+        currentCategoryIndex = (currentCategoryIndex + 1) % categories.length;
+    }
+    const newCategory = categories[currentCategoryIndex];
+    loadEmojis(newCategory);
+}
+
+document.getElementById('prev-category').addEventListener('click', () => navigateCategory('prev'));
+document.getElementById('next-category').addEventListener('click', () => navigateCategory('next'));
 
 // Handle the drag start event
 function handleDragStart(e) {
@@ -178,33 +206,34 @@ function stopAutoScroll() {
     }
 }
 
+// Toggle Emoji Deck Visibility
+function toggleEmojiDeck() {
+    const emojiDeck = document.getElementById('emoji-deck');
+    const body = document.body;
+
+    if (emojiDeck.classList.contains('hidden')) {
+        emojiDeck.classList.remove('hidden');
+        body.classList.remove('emoji-deck-hidden');
+    } else {
+        emojiDeck.classList.add('hidden');
+        body.classList.add('emoji-deck-hidden');
+    }
+}
+
+document.getElementById('toggle-emoji-deck-button').addEventListener('click', toggleEmojiDeck);
+
 // Initialize the app
 function init() {
     generateTimeslots();
 
     // Load default emoji category
-    loadEmojis('smileys');
-
-    // Tab buttons for changing emoji categories
-    const tabButtons = document.querySelectorAll('.tab-button');
-    tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Remove active class from all tabs
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            // Add active class to clicked tab
-            button.classList.add('active');
-            // Load emojis for selected category
-            const category = button.getAttribute('data-category');
-            loadEmojis(category);
-        });
-    });
+    loadEmojis(categories[currentCategoryIndex]);
 
     // Update live time in the header
     updateLiveTime();
     setInterval(updateLiveTime, 1000);
 }
 
-// Function to update the live time in the header
 function updateLiveTime() {
     const liveTimeElement = document.getElementById('live-time');
     const now = new Date();
